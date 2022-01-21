@@ -4,8 +4,10 @@
 3. no special character to end a line
 4. Exported functions from a package are always capitalized
 5. entry point "main" has no arguments and no return
-6. ```package main //default package
-      import "fmt" // import of a package```
+6. ```
+      package main //default package
+      import "fmt" // import of a package
+    ```
 
 example check: Basic.go
 
@@ -43,7 +45,7 @@ example check: Variable.go
 # Functions
 - type of arguments and returns are at the end
 - multiple arguments and multiple returns
-- General syntax
+- General syntax: 
 
 ```
 func functionName (parameter_list) (return_value_list){
@@ -55,4 +57,24 @@ func functionName (parameter_list) (return_value_list){
   - return_value_list --> (ret1 type1, ret2 type2, ..)
   - return_value --> either can be specify if unnamed or can be associated by name
 
-example check: DefiningFunction.go
+example check: 
+DefiningFunction.go
+
+ifStatement_with_Function.go
+
+Lambda_with_Function.go 
+
+Passing_Function_asParameters.go 
+
+# Pointers 
+ - a pointer is the address of that in memory 
+ - "&" operator returns the **address** of the variable or the function 
+ - "*" operator returns the data at the address (deference)
+ - if the parameter is *pointer, the  it have to passing reference(address)
+check Example: 
+
+Pointers.go 
+
+Pointers_and_structures.go 
+
+
