@@ -8,7 +8,10 @@ type dog struct {
 }
 
 //passing value + function name
-
+//(d *dog) is the receiver,
+//when you want to write function for specific object
+//you need receiver that contains the OBJECT
+//like java "this"
 func(d *dog) rename(new string){
   d.name = new
 }
