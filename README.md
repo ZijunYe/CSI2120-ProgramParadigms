@@ -1,14 +1,14 @@
 # CSI2120 Notes
 ## Go
 1. **Go Basic(lecture1)**
-  - [commenting, package, import]
+  - [commenting, package, import](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Basic.md#commenting-import-package)
   - [variable](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Basic.md#variable)
-  - function
-  - pointers
-  - if statement & for loop
-  - switch
-  - overview three categories(datatype)
-      - structured or composite (struct,array,slices)
+  - [function](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Basic.md#functions)
+  - [pointers](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Basic.md#pointers)
+  - [if statement & for loop](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Basic.md#if-statement-for-loop)
+  - [switch](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Basic.md#switch)
+  - [overview three categories(datatype)](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Basic.md#datatype)
+      - [structured or composite (struct,array,slices)](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Composite_datatype.md)
 
 2. **Go_Methods(Slide2)**
   - Stream I/O
