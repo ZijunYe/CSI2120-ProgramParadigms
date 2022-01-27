@@ -1,20 +1,25 @@
 # CSI2120 Notes
-1. Go Basic
+## Go
+1. **Go Basic(lecture1)**
   - commenting, package, import
   - variable
   - function
-  - points
+  - pointers
   - if statement & for loop
   - switch
+  - overview three categories(datatype)
+      - structured or composite (struct,array,slices)
 
-2. Methods
+2. **Go_Methods(Slide2)**
   - Stream I/O
   - defer
-  - errors and panic
+  - errors, panic, recover
+  - Methods and receivers
+  - Interface, and polymorphism
+  - Binary Tree, queue
 
-3. Datatype
-  - overview three categories
-  - structured or composite
-  - interface
 
-4. Goroutine 
+3. **Concurrency(Slide3)**
+  - Concurrency and parallelism
+  - Goroutines
+  - Channels

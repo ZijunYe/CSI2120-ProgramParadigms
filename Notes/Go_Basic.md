@@ -1,4 +1,5 @@
-# Basic Info
+# Go Basic
+## commenting, import, package
 1. comments use "//" for one line comments
 2. Section can be commented out with "/*"
 3. no special character to end a line
@@ -11,7 +12,7 @@
 
 example check: Basic.go
 
-# Variable
+## Variable
 How to define variable?
 1. two line define
 ```
@@ -48,7 +49,7 @@ example check: Variable.go
 
 
 
-# Functions
+## Functions
 - type of arguments and returns are at the end
 - multiple arguments and multiple returns
 - General syntax:
@@ -62,7 +63,7 @@ func functionName (parameter_list) (return_value_list){
   - parameter_list --> (param1 type1, param2 type2, ..)
   - return_value_list --> (ret1 type1, ret2 type2, ..)
   - return_value --> either can be specify if unnamed or can be associated by name
-  - function that associated to the object, it first is input then it is the function name 
+  - function that associated to the object, it first is input then it is the function name
 example check:
 DefiningFunction.go
 
@@ -72,7 +73,7 @@ Lambda_with_Function.go
 
 Passing_Function_asParameters.go
 
-# Pointers
+## Pointers
  - a pointer is the address of that in memory
  - "&" operator returns the **address** of the variable or the function
  - "*" operator returns the data at the address (deference)
@@ -84,7 +85,7 @@ Pointers.go
 Pointers_and_structures.go
 
 
-# If statement, for loop
+## If statement, for loop
 
 - for loop the init and post statement are optional
   ```go
@@ -108,7 +109,7 @@ Pointers_and_structures.go
 }
 ```
 
-# switch
+## switch
 ```go
   func main() {
 	fmt.Print("Go runs on ")
@@ -124,3 +125,11 @@ Pointers_and_structures.go
 	}
 }
 ```
+
+## DataType
+Golang has three categories of data tyoes
+1. elementary or primitive
+    - (int, float,bool,string)
+2. Structured or composite
+    - (struct,array, slice, map, channel)
+3. Interfaces (only describe the behavior of a type)
