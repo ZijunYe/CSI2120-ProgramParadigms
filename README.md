@@ -1,8 +1,8 @@
 # CSI2120 Notes
 ## Go
 1. **Go Basic(lecture1)**
-  - commenting, package, import
-  - variable
+  - [commenting, package, import]
+  - [variable](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Basic.md#variable)
   - function
   - pointers
   - if statement & for loop
