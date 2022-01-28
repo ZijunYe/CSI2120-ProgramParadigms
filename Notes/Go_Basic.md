@@ -87,6 +87,13 @@ Pointers_and_structures.go
 
 ## If statement, for loop
 
+- if statement can start with a short statement 
+```go 
+if v := math.Pow(x, n); v < lim {
+		return v
+	}
+```
+
 - for loop the init and post statement are optional
   ```go
       func main() {
@@ -109,6 +116,34 @@ Pointers_and_structures.go
 }
 ```
 
+- go's while loop 
+```go 
+sum := 1
+	for sum < 1000 {
+		sum += sum
+	}
+	fmt.Println(sum)
+```
+
+- range and loop 
+```go 
+//range can be treat as index, you can skip the index or value by assign to _ 
+func main() {
+	pow := make([]int, 10)
+	for i := range pow {
+		pow[i] = 1 << uint(i) // == 2**i
+	}
+	for _, value := range pow {
+		fmt.Printf("%d\n", value)
+	}
+}
+```
+
+```go 
+for i, _:= range pow
+for _, value := range pow
+for i :=range pow //only want the index, you can omit the second variable
+```
 ## switch
 ```go
   func main() {
