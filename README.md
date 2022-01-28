@@ -1,4 +1,13 @@
 # CSI2120 Notes
+| lab#        | Description |
+| ----------- | ------------------------------------------ |
+| lab1        |  functons, looping, struct&pointers, maps  |
+| lab2        | receiver, channel, cutomize array size     |
+
+| tut#        | Description |
+| ----------- | ------------------------------------------ |
+| tut2        |  receiver, interface                       |
+
 ## Go
 1. **Go Basic(lecture1)**
   - [commenting, package, import](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Basic.md#commenting-import-package)
