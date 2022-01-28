@@ -14,14 +14,14 @@
 | /                          |it also target a single processor, the process run in turn over time according to a schedule|
 
 
-- **Concurrent Programming language must support: **
+- **Concurrent Programming language must support**
   1. creation and execution of processes and threads 
   2. data communication between threads and processes(may use mechanism using inter-process communication defined by the operating system) 
   3. synchronization operations (there are two ways to do synchronization
-       - cooperative synchronization
-          - a process waits for the execution of another before continuting its own execution(like conversation) 
-       - Competitive synchronization ?? 
-          -  multiple processes use the same resource with some form of locking mechanism for mutual exclusion(non-deterministic concurrency) 
+          - cooperative synchronization
+              - a process waits for the execution of another before continuting its own execution(like conversation) 
+          - Competitive synchronization ?? 
+              -  multiple processes use the same resource with some form of locking mechanism for mutual exclusion(non-deterministic concurrency) 
 
 - **level of concurrency** ?? 
  1. at the statement level - set of statement are executed concurrently while the main processs suspends its execution. all threads share the same data. 
@@ -31,19 +31,20 @@
 
 - **type of concurrency**
   - physical
-    - multile processes/ threads share different processor or cores 
+        - multile processes/ threads share different processor or cores 
   - logical 
-    -   multiple processes/ threads hsare execution time on a single processor 
+        -   multiple processes/ threads hsare execution time on a single processor 
   - distributed
-    -   processes/threads of an application share several machines over a network 
+        -   processes/threads of an application share several machines over a network 
 
 
 - **concurrency in go** 
   -  two machinsm are provided : non-deterministic concurrency and deterministic concurrency (gorountine and channel) 
   -  CSP(communication sequential processes) 
-       -   based on the idea that avoding data sharing will avoid the biggest problem 
-       -   threads in CSP do not communicate by sharing data
-       -   timing of threads is based on messaging between threads 
+          -   based on the idea that avoding data sharing will avoid the biggest problem 
+          -   threads in CSP do not communicate by sharing data
+          -   timing of threads is based on messaging between threads 
+      
 ## Goroutines 
 - run concurrently, run in several threads 
 - run in the same address space 
