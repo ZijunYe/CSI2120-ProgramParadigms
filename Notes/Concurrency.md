@@ -24,10 +24,10 @@
               -  multiple processes use the same resource with some form of locking mechanism for mutual exclusion(non-deterministic concurrency) 
 
 - **level of concurrency** ?? 
-       1. at the statement level - set of statement are executed concurrently while the main processs suspends its execution. all threads share the same data. 
-       2. at the sub-program level - new process is created for running subroutine. once the new process starts, the calling process continues its execution.requires a synchronization mechanism 
-       3. at the object level - each objet instance of a class competes for resources and method on different object run concurrently. class variable ar not shared 
-       4. at the program level- parent process run one or more child processes. child process ID must known by parent. data may be shared 
+   1. at the statement level - set of statement are executed concurrently while the main processs suspends its execution. all threads share the same data. 
+   2. at the sub-program level - new process is created for running subroutine. once the new process starts, the calling process continues its execution.requires a synchronization mechanism 
+   3. at the object level - each objet instance of a class competes for resources and method on different object run concurrently. class variable ar not shared 
+   4. at the program level- parent process run one or more child processes. child process ID must known by parent. data may be shared 
 
 - **type of concurrency**
   - physical
