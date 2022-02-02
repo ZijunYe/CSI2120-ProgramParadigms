@@ -9,7 +9,7 @@ public class Cluster {
 
     
     //constructor 
-    public Cluster(int id){
+    public Cluster(int id, GPScoord p){
         this.id = id; 
         this.points =  new ArrayList<>(); 
         this.center = null;  
@@ -33,34 +33,10 @@ public class Cluster {
         return id; 
     }
 
-   
+   public String printCluster(){
+       return 
 
-
-    //get average longitude 
-    /*public double getavgLat(){
-        double sum = 0; 
-        //looping through the point array 
-        
-       for(int i = 0; i < num_points; i++){
-           sum += (points.get(i)).getLatitude(); 
-       }
-       double avgLat = sum/num_points; 
-
-        return avgLat; 
-    }
-
-
-    //get average latitude 
-    public double getavgLon(){
-        double sum = 0; 
-        for(int i = 0; i < num_points; i++){
-            sum += (points.get(i)).getLongitude(); 
-        }
-        double avgLon = sum/num_points; 
-
-        return avgLon; 
-
-    }*/ 
+   }
 
 
 
