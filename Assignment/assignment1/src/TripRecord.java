@@ -9,6 +9,7 @@ public class TripRecord {
 
     private Boolean visited; 
     private int clusterid; 
+    
     //constructor 
     public TripRecord(String pickupDateTime, GPScoord pickupLocation, GPScoord dropoffLocation, double tripDistance){
         this.pickup_DateTime = pickupDateTime; 

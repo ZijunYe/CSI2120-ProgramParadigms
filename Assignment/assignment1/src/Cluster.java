@@ -7,7 +7,6 @@ public class Cluster {
     private GPScoord center; 
 
     //constructor 
-
     public Cluster(int cluster_id, GPScoord center_point){
         this.points = new ArrayList<>(); 
         this.id = cluster_id; 
@@ -35,10 +34,6 @@ public class Cluster {
 
     public int getClusterId(){
         return id; 
-    }
-
-    public void setClusterId(GPScoord center){
-        this.center = center;
     }
   
     

@@ -55,7 +55,10 @@ public class DBScan {
                 
                     }   
                 }
-                if(n1.getClusterId() == -1){ c.addPoint(n1); }
+
+                if(n1.getClusterId() == -1){
+                    c.addPoint(n1);
+                }
     
             } 
 

@@ -25,20 +25,13 @@ public class Main {
 
     }
 
-    /*public static void inputFromUser(){
-            Scanner input = new Scanner(System.in);
-            System.out.println("Please specify cluster epsilon and minPts:"); 
-            this.eps = input.nextDouble(); 
-            this.minPts = input.nextInt(); 
-    }*/
-
     public static ArrayList<TripRecord> readFile(String nameOfFile){
         ArrayList<TripRecord> data = new ArrayList<>(); 
     
         try  {
             File file = new File(nameOfFile);
-            FileReader fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
+            FileReader f = new FileReader(file);
+            BufferedReader br = new BufferedReader(f);
             String line = " ";
             String[] dataArray;
             line = br.readLine();
