@@ -8,7 +8,7 @@ public class TripRecord {
 
 
     private Boolean visited; 
-    private int cluster_id; 
+    private int clusterid; 
     //constructor 
     public TripRecord(String pickupDateTime, GPScoord pickupLocation, GPScoord dropoffLocation, double tripDistance){
         this.pickup_DateTime = pickupDateTime; 
@@ -16,7 +16,7 @@ public class TripRecord {
         this.dropoff_Location = dropoffLocation; 
         this.trip_distance = tripDistance; 
         this.visited = false; 
-        this.cluster_id = -1; 
+        this.clusterid = -1; 
     }   
 
 
@@ -29,7 +29,7 @@ public class TripRecord {
     }
 
     public int getClusterId(){
-        return cluster_id; 
+        return clusterid; 
     }
 
     public String getPickupDateTime(){
@@ -46,6 +46,11 @@ public class TripRecord {
 
     public double getTripDistance(){
         return trip_distance; 
+    }
+
+
+    public void getInCluster(int id) {
+        this.clusterid = id; 
     }
 
 }

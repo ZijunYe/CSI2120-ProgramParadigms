@@ -13,14 +13,17 @@ public class DBScan {
         this.Eps = eps; 
         this.minPts = minpts; 
         this.tripdata = trip;
-        this.clusters = new ArrayList<>(); 
+        this.clusters = new ArrayList<Cluster>(); 
+        runDBScan(); 
+    }
 
+    public void runDBScan(){
         int c = 0; 
-        for(TripRecord t: trip){
+        for(TripRecord t: tripdata){
             if (t.is_visited()){continue;} 
             t.visit(); 
-            ArrayList<TripRecord> neighbour = regionQuery(t,eps); 
-            if(neighbour.size() >= minPts){
+            ArrayList<TripRecord> neighbour = regionQuery(t,Eps); //first check whether it eligble to become center points 
+            if(neighbour.size() >= minPts){ 
                 c++; 
                 Cluster newCluster = new Cluster(c,t.getPickupLocation()); 
                 expandCluster(t,neighbour, newCluster,Eps,minPts); 
@@ -42,41 +45,49 @@ public class DBScan {
             c.addPoint(t); //t is current core point 
             int size = neighbour.size(); 
             for(int i = 0; i < size; i++){//loop through the neighbour array
-                TripRecord n = neighbour.get(i); 
-                if(n.is_visited()){continue;}
-                n.visit();
-                ArrayList<TripRecord> region_of_neighbour = regionQuery(n,eps); 
-                if(region_of_neighbour.size() >= minpts){ //the neighbour also is the core points 
-                    neighbour.addAll(region_of_neighbour); 
-                    size = size + region_of_neighbour.size(); 
-                }
-
-
-
+                TripRecord n1 = neighbour.get(i); 
+                if(! (n1.is_visited())){
+                    n1.visit();
+                    ArrayList<TripRecord> region_of_neighbour = regionQuery(n1,eps); 
+                    if(region_of_neighbour.size() >= minpts){ //the neighbour also is the core points 
+                        neighbour.addAll(region_of_neighbour); 
+                        size = size + region_of_neighbour.size(); 
                 
-
-            }
-
+                    }   
+                }
+                if(n1.getClusterId() == -1){ c.addPoint(n1); }
+    
+            } 
 
     }
 
-    //find all the points around the center points 
+    //find all the points around the center points
     public ArrayList<TripRecord> regionQuery(TripRecord t, double eps){
         ArrayList<TripRecord> r = new ArrayList<>(); 
-        for(TripRecord l: this.tripdata ){
+        for(TripRecord l: this.tripdata ){ //l represent a trip 
             if(distance(t.getPickupLocation(),l.getPickupLocation()) <= eps){
                 r.add(l); 
             }
         }
-        return r;
+        return r; //RETURN all the trip that starting points are close to current center point
     }
 
 
     private double distance(GPScoord point1, GPScoord point2) {
-        double x = Math.pow((point2.getLatitude()-point1.getLatitude()),2); 
+        double x = Math.pow((point2.getLatitude() - point1.getLatitude()),2); 
         double y = Math.pow((point2.getLongitude()-point1.getLongitude()),2); 
         double result = Math.sqrt(x+y); 
         return result; 
     }
 
+
+    //getter 
+
+    public ArrayList<Cluster> getClusters(){
+        return this.clusters; 
+    }
+
 }
+
+
+

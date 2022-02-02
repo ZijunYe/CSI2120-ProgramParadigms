@@ -1,45 +1,45 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Cluster {
     //attributes
-    private List<GPScoord> points; // what are these points(list of points)
+    private ArrayList<GPScoord> points; // what are these points(list of points)
     private  int id; //the overall cluster name 
     private GPScoord center; 
 
-    
     //constructor 
-    public Cluster(int id, GPScoord p){
-        this.id = id; 
-        this.points =  new ArrayList<>(); 
-        this.center = null;  
+
+    public Cluster(int cluster_id, GPScoord center_point){
+        this.points = new ArrayList<>(); 
+        this.id = cluster_id; 
+        this.center = center_point; 
     }
 
-    //functions 
-
- 
-    public void addPoint(GPScoord p){
-        points.add(p);
+    //add point method
+    public void addPoint(TripRecord p){
+        this.points.add(p.getPickupLocation()); 
+        p.getInCluster(this.id); 
     }
 
+    //print method 
+    public void printCluster(){
+        System.out.println(this.id + "| " + this.center.getLongitude() + " | " + this.center.getLatitude() + " | " + this.points.size());
+    }
 
-
-
-    public GPScoord getCenter(){
+    //getter 
+    public GPScoord getcenter(){
         return center; 
     }
+    public int getSizeOfCluster(){
+        return points.size(); 
+    }
 
-    public int getId(){
+    public int getClusterId(){
         return id; 
     }
 
-   public String printCluster(){
-       return 
-
-   }
-
-
-
-
+    public void setClusterId(GPScoord center){
+        this.center = center;
+    }
+  
     
 }
