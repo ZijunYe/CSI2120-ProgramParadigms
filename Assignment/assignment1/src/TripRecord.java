@@ -9,6 +9,8 @@ public class TripRecord {
 
     private Boolean visited; 
     private int clusterid; 
+    private boolean isNoise;
+
     
     //constructor 
     public TripRecord(String pickupDateTime, GPScoord pickupLocation, GPScoord dropoffLocation, double tripDistance){
@@ -17,10 +19,19 @@ public class TripRecord {
         this.dropoff_Location = dropoffLocation; 
         this.trip_distance = tripDistance; 
         this.visited = false; 
-        this.clusterid = -1; 
+        this.clusterid = -1;
+        this.isNoise = false; 
+       
     }   
 
+    public void setNoise(){
+        isNoise = true; 
 
+    } 
+
+    public Boolean isNoise(){
+        return isNoise; 
+    }
     public void visit(){
        visited = true;  
     }
@@ -28,6 +39,7 @@ public class TripRecord {
     public Boolean is_visited(){
         return visited; 
     }
+
 
     public int getClusterId(){
         return clusterid; 
@@ -52,6 +64,16 @@ public class TripRecord {
 
     public void getInCluster(int id) {
         this.clusterid = id; 
+    }
+
+    public Boolean equals(TripRecord other){
+        Boolean result = (
+            this.getDropoffLocation().equals(other.getDropoffLocation()) &&
+            this.getPickupDateTime().equals(other.getPickupDateTime())&&
+            this.getPickupLocation().equals(other.getPickupLocation()) &&
+            this.getTripDistance() == other.getTripDistance()
+        );
+        return result; 
     }
 
 }
