@@ -31,9 +31,11 @@ func main() {
 	fmt.Print("Number of Go routines: ") //get value from user
 	fmt.Scanf("%d \n", &nGo)             //number of go routine
 	res := make([]chan float64, nGo)     //array of channel
-	//each channel can receive nGo thread
 
+	//each channel can receive nGo thread
+	//res := make(chan float64, nGo)
 	//when create an array of channel, it has to have capacity like buffer channel
+
 
 	for i := 0; i < nGo; i++ { //filled all the channel
 		res[i] = numbers(1000) //for each channel
