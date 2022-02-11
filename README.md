@@ -3,6 +3,7 @@
 | ----------- | ------------------------------------------ |
 | lab1        |  functons, looping, struct&pointers, maps  |
 | lab2        | receiver, channel, cutomize array size     |
+| lab3        | check channel status,error message,buffer channel|
 
 | tut#        | Description |
 | ----------- | ------------------------------------------ |
@@ -21,8 +22,8 @@
 
 2. **Go_Methods(Slide2)**
   - [Stream I/O](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Methods.md#stream-io)
-  - [defer](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Methods.md#final-evaluation-with-defer) 
-  - [errors, panic, recover](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Methods.md#errors-and-panic) 
+  - [defer](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Methods.md#final-evaluation-with-defer)
+  - [errors, panic, recover](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Methods.md#errors-and-panic)
   - [ Methods and receivers ](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Methods.md#method-and-receiver)
   - [Interface, and polymorphism](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Methods.md#interface-and-polymorphism)
   - [Binary Tree, queue](https://github.com/ZijunYe/CSI2120/blob/main/Notes/Go_Methods.md#binary-tree-and-generic-queue)

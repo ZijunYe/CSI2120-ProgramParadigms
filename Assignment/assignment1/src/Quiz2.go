@@ -29,28 +29,25 @@ func calcul2(in []int, out []int, ch chan bool) {
 
 import (
 	"fmt"
+	"sync"
 )
 
 func main() {
-	//var wg sync.WaitGroup
+	var wg sync.WaitGroup
 	x := []int{3, 1, 4, 1, 5, 9, 2, 6}
 	var y [8]int
 
-	//wg.Add(2) // number of goroutines to synchronize
+	wg.Add(2) // number of goroutines to synchronize
 	// parallel loop in 2 slices
-	//go calcul2(x[:4], y[:4], &wg)
-	//go calcul2(x[4:], y[4:], &wg)
-	done := make(chan bool, 1)
-	go calcul2(x[:4], y[:4], done)
-	go calcul2(x[4:], y[4:], done)
-	//wg.Wait() // waiting for the 2 goroutines
-	<-done
+	go calcul2(x[:4], y[:4], &wg)
+	go calcul2(x[4:], y[4:], &wg)
+	wg.Wait() // waiting for the 2 goroutines
+
 	fmt.Println(y)
 }
-func calcul2(in []int, out []int, done chan bool) {
+func calcul2(in []int, out []int, wg *sync.WaitGroup) {
 	for i, v := range in {
 		out[i] = 2*v*v*v + v*v
 	}
-	//wg.Done() // signals that the goroutine is finished
-	done <- true
+	wg.Done() // signals that the goroutine is finished
 }*/
