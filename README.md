@@ -30,6 +30,12 @@
 
 
 3. **Concurrency(Slide3)**
-  - Concurrency and parallelism
-  - Goroutines
-  - Channels
+  - [Concurrency and parallelism](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/Notes/Concurrency.md#concurrency-and-parallelism)
+  - [Goroutines](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/Notes/Concurrency.md#goroutines)
+  - [Channels](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/Notes/Concurrency.md#channels) 
+  - [Semaphore](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/Notes/Concurrency.md#semaphore) 
+
+
+
+## Prolog 
+
