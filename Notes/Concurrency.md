@@ -270,7 +270,7 @@ func main() {
 }
 ```
 
-##Semaphore 
+## Semaphore 
 - general mechanism that synchronization and resource sharing between process 
 - it has a gobal channel 
 - type of semaphore 
