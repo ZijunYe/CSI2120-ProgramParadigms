@@ -38,4 +38,24 @@
 
 
 ## Prolog 
+1. Basic 
+- Facts & Rules 
+- Constant/Atom  & Variable 
+- Queries
+- Database 
+- Conjunction 
+
+2. Predicate Calculus
+- Predicate
+- Horn Clauses
+- Unification
+- Resolution
+
+3. Search Tree & Backtracking 
+
+
+
+
+
+
 
