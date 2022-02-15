@@ -28,7 +28,9 @@ salary(X):- employed(_,X).
 - to make two formulas identical by giving values to the variable they contain (matching)
 - Predicate name need to be match 
 - the arguments number need to be match
-(slide6 page20 EXAMPLE)
+Example
+![uni EXAMPLE](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/sample/Unification_example1.png)
+![uni EXAMPLE](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/sample/Unification_example2.png)
 
 
 **Demonstration Steps**
@@ -40,5 +42,6 @@ salary(X):- employed(_,X).
 	- produces proof by contraction 
 
 Example: 
-(from sample image)
+![RESOLUTION EXAMPLE](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/sample/resolution_example.png) 
+
 
