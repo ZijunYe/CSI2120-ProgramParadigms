@@ -38,23 +38,23 @@
 
 
 ## Prolog 
-1. Basic 
+1. **Basic**
 - [Facts & Rules](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/IntroductionToProlog.md#facts) 
 - [Constant/Atom  & Variable ](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/IntroductionToProlog.md#constants-or-atoms)
 - [Queries](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/IntroductionToProlog.md#variable)
 - [Database](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/IntroductionToProlog.md#database)
 - [Conjunction](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/IntroductionToProlog.md#queries-or-questions)
 
-2. Predicate Calculus
+2. **Predicate Calculus**
 - [Predicate](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/Prolog2.md#predicated-in-prolog)
   - [Horn Clauses](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/Prolog2.md#horn-clauses)
 - [Unification](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/Prolog2.md#unification)
 - [Resolution](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/Prolog2.md#resolution)
 
-3.  Backtracking 
+3. **Backtracking** 
 - [Search Tree](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/SearchTree_BackTracking.md)
 
-4. Arithmetic Expressions
+4. **Arithmetic Expressions**
 - Built-in operators 
 - Unification with numbers 
 - Recursive calculations
