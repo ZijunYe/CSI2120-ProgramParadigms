@@ -29,7 +29,9 @@ Example
 
 **Different order causes different result (A,B,C)**
 A: norm predicates + recursion predicates + roots (evaluate norm then recursion) --> result in backtracking
+
 B: norm predicates + recursion predicates + roots(evaluate recursion then norm) --> result in error 
+
 C: norm predicates + roots(evaluate norm then recursion) + recursion predicates --> result in only one answer
 
 ![backtracking3](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/sample/backtrackingExample3.jpeg)
