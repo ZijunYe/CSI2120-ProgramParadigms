@@ -28,6 +28,7 @@ Example
 
 
 **Different order causes different result (A,B,C)**
+
 A: norm predicates + recursion predicates + roots (evaluate norm then recursion) --> result in backtracking
 
 B: norm predicates + recursion predicates + roots(evaluate recursion then norm) --> result in error 
