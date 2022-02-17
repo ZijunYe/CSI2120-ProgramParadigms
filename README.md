@@ -4,6 +4,7 @@
 | lab1        |  functons, looping, struct&pointers, maps  |
 | lab2        | receiver, channel, cutomize array size     |
 | lab3        | check channel status,error message,buffer channel|
+| lab4        | prolog introduction, how to consulting file|
 
 | tut#        | Description |
 | ----------- | ------------------------------------------ |
