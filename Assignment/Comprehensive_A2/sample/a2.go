@@ -16,6 +16,11 @@ import (
 	"time"
 )
 
+const (
+	NOISE     = false
+	CLUSTERED = true
+)
+
 type GPScoord struct {
 	lat  float64
 	long float64
@@ -147,22 +152,21 @@ func consumer(jobs chan Partition, done *sync.WaitGroup) {
 // offset: label of first cluster (also used to identify the cluster)
 // returns number of clusters found
 func DBscan(coords []LabelledGPScoord, MinPts int, eps float64, offset int) (nclusters int) {
-	visitied := make(map[GPScoord]bool, len(coords))
+	visited := map[GPScoord]bool{}
 	for _, point := range coords {
-		if point.Label != 0 {
-			continue
+		neighbours := findNeighbours(point, coords)
+		if len(neighbours)+1 >= MinPts {
+			visited[point.GPScoord] = CLUSTERED
+			nclusters++
+			point.Label = nclusters + offset
+			cluster := []LabelledGPScoord{point}
+			cluster = expandCluster(cluster, neighbours, visited)
+		} else {
+			visited[point.GPScoord] = NOISE
 		}
-		neighbors := findNeighbours(coords, point)
-		if len(neighbors) < MinPts {
-			visitied[point.GPScoord] = false
-			continue
-		}
-		nclusters = nclusters + 1
-		point.Label = nclusters + offset
-		visitied[point.GPScoord] = true
-		cluster := []LabelledGPScoord{point}
-		cluster = expandCluster(point, neighbors, cluster, visitied)
+
 	}
+
 	// End of DBscan function
 	// Printing the result (do not remove)
 	fmt.Printf("Partition %10d : [%4d,%6d]\n", offset, nclusters, len(coords))
@@ -170,47 +174,57 @@ func DBscan(coords []LabelledGPScoord, MinPts int, eps float64, offset int) (ncl
 
 }
 
-func findNeighbours(coords []LabelledGPScoord, point LabelledGPScoord) []LabelledGPScoord {
-	neighbors := make([]LabelledGPScoord, 0)
+func findNeighbours(point LabelledGPScoord, coords []LabelledGPScoord) []LabelledGPScoord {
+	neighbours := make([]LabelledGPScoord, 0)
 	for _, neighbor := range coords {
-		if point.Label != neighbor.Label && distance(neighbor.GPScoord, point.GPScoord) <= eps {
+		if point.ID != neighbor.ID && distance(neighbor.GPScoord, point.GPScoord) <= eps {
 			neighbor.Label = point.Label
-			neighbors = append(neighbors, neighbor)
+			neighbours = append(neighbours, neighbor)
 		}
 	}
-	return neighbors
+	return neighbours
 }
 
-func expandCluster(point LabelledGPScoord, neighbors []LabelledGPScoord, clusters []LabelledGPScoord, visited map[GPScoord]bool) []LabelledGPScoord {
-	seed := make([]LabelledGPScoord, len(neighbors))
-	copy(seed, neighbors)
-
-	//merge set
-	set := make(map[GPScoord]LabelledGPScoord, len(clusters)+len(neighbors))
-	merge(set, clusters)
-
-	for _, curr := range seed {
-		clustered, isVisitied := visited[curr.GPScoord]
-		if !isVisitied {
-			currNeighbors := findNeighbours(seed, curr)
-			if len(currNeighbors) >= MinPts {
-				visited[curr.GPScoord] = true
-				merge(set, currNeighbors) //UPDATE the set
+func expandCluster(cluster []LabelledGPScoord, neighbours []LabelledGPScoord, visited map[GPScoord]bool) []LabelledGPScoord {
+	seed := make([]LabelledGPScoord, len(neighbours))
+	copy(seed, neighbours)
+	for _, point := range seed {
+		pointState, isVisited := visited[point.GPScoord]
+		if !isVisited {
+			currentNeighbours := findNeighbours(point, seed)
+			if len(currentNeighbours)+1 >= MinPts {
+				visited[point.GPScoord] = CLUSTERED
+				cluster = merge(cluster, currentNeighbours)
 			}
 		}
 
-		if isVisitied && !clustered {
-			visited[curr.GPScoord] = true
-			set[curr.GPScoord] = curr
+		if isVisited && pointState == NOISE {
+			visited[point.GPScoord] = CLUSTERED
+			cluster = append(cluster, point)
 		}
-
 	}
 
-	merged := make([]LabelledGPScoord, 0, len(set))
-	for _, value := range set {
-		merged = append(merged, value)
+	return cluster
+}
+
+func merge(one []LabelledGPScoord, two []LabelledGPScoord) []LabelledGPScoord {
+	mergeMap := make(map[GPScoord]LabelledGPScoord)
+	putAll(mergeMap, one)
+	putAll(mergeMap, two)
+	merged := make([]LabelledGPScoord, 0)
+	for _, val := range mergeMap {
+		merged = append(merged, val)
 	}
+
 	return merged
+}
+
+//Function to add all values from list to map
+//map keys is then the unique collecton from list
+func putAll(m map[GPScoord]LabelledGPScoord, list []LabelledGPScoord) {
+	for _, val := range list {
+		m[val.GPScoord] = val
+	}
 }
 
 func distance(point1 GPScoord, point2 GPScoord) (distance float64) {
@@ -218,12 +232,6 @@ func distance(point1 GPScoord, point2 GPScoord) (distance float64) {
 	y := math.Pow(point2.long-point1.long, 2)
 	distance = math.Sqrt(x + y)
 	return distance
-}
-
-func merge(new map[GPScoord]LabelledGPScoord, src []LabelledGPScoord) {
-	for _, value := range src {
-		new[value.GPScoord] = value
-	}
 }
 
 // reads a csv file of trip records and returns a slice of the LabelledGPScoord of the pickup locations

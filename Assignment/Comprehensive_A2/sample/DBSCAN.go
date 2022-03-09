@@ -147,17 +147,31 @@ func consumer(jobs chan Partition, done *sync.WaitGroup) {
 // offset: label of first cluster (also used to identify the cluster)
 // returns number of clusters found
 func DBscan(coords []LabelledGPScoord, MinPts int, eps float64, offset int) (nclusters int) {
-	visitied := make(map[GPScoord]bool, len(coords)) //check is the points visited or not
 	for _, point := range coords {
-		neighbors := findNeighbours(point, coords)
-		if len(neighbors)+1 >= MinPts {
-			visitied[point.GPScoord] = true
-			nclusters = nclusters + 1
-			point.Label = nclusters + offset
-			cluster := []LabelledGPScoord{point}
-			cluster = expandCluster(point, neighbors, visitied, cluster)
-		} else {
-			visitied[point.GPScoord] = false
+		if point.Label != 0 { //the point is ready visited
+			continue
+		}
+
+		//the point haven't visited before
+		neighbors := findNeighbours(coords, point)
+		if len(neighbors) < MinPts {
+			continue //is not eligible
+		}
+
+		nclusters = nclusters + 1
+		point.Label = nclusters + offset
+		cluster := []LabelledGPScoord{}
+		copy(cluster, neighbors)
+
+		for _, value := range neighbors {
+			if value.Label != 0 {
+				continue
+			}
+			value.Label = point.Label
+			moreNeighbors := findNeighbours(coords, value)
+			if len(moreNeighbors) >= MinPts {
+				cluster = merge(moreNeighbors, cluster)
+			}
 		}
 	}
 	// End of DBscan function
@@ -167,56 +181,14 @@ func DBscan(coords []LabelledGPScoord, MinPts int, eps float64, offset int) (ncl
 
 }
 
-func findNeighbours(point LabelledGPScoord, coords []LabelledGPScoord) []LabelledGPScoord {
-	neighbours := make([]LabelledGPScoord, 0)
-	for _, neighbor := range coords {
-		if point.Label != neighbor.Label && distance(neighbor.GPScoord, point.GPScoord) <= eps {
-			neighbor.Label = point.Label
-			neighbours = append(neighbours, neighbor)
+func findNeighbours(coords []LabelledGPScoord, point LabelledGPScoord) (neighbours []LabelledGPScoord) {
+	for _, p := range coords {
+		if distance(p.GPScoord, point.GPScoord) <= eps {
+				neighbours = append(neighbours, p)
 		}
 	}
+
 	return neighbours
-}
-
-func expandCluster(point LabelledGPScoord, neighbors []LabelledGPScoord, visited map[GPScoord]bool, currCluster []LabelledGPScoord) []LabelledGPScoord {
-	seed := make([]LabelledGPScoord, len(neighbors))
-	copy(seed, neighbors)
-
-	for _, currPoint := range seed {
-		currPointStatus, isVisited := visited[currPoint.GPScoord]
-		if !isVisited {
-			currNeighbors := findNeighbours(currPoint, seed)
-			if len(currNeighbors)+1 >= MinPts {
-				visited[currPoint.GPScoord] = true
-				currCluster = merge(currCluster, currNeighbors)
-			}
-		}
-
-		if isVisited && currPointStatus == false {
-			visited[currPoint.GPScoord] = true
-			currCluster = append(currCluster, currPoint)
-		}
-	}
-
-	return currCluster
-
-}
-
-func merge(cluster1 []LabelledGPScoord, cluster2 []LabelledGPScoord) []LabelledGPScoord {
-	mergeMap := make(map[GPScoord]LabelledGPScoord)
-	for _, val := range cluster1 {
-		mergeMap[val.GPScoord] = val
-	}
-
-	for _, val2 := range cluster2 {
-		mergeMap[val2.GPScoord] = val2
-	}
-
-	merged := make([]LabelledGPScoord, 0)
-	for _, value := range mergeMap {
-		merged = append(merged, value)
-	}
-	return merged
 }
 
 func distance(point1 GPScoord, point2 GPScoord) (distance float64) {
@@ -224,6 +196,13 @@ func distance(point1 GPScoord, point2 GPScoord) (distance float64) {
 	y := math.Pow(point2.long-point1.long, 2)
 	distance = math.Sqrt(x + y)
 	return distance
+}
+
+func merge(src []LabelledGPScoord, set []LabelledGPScoord) []LabelledGPScoord {
+	for _, value := range src {
+		set = append(set, value)
+	}
+	return set
 }
 
 // reads a csv file of trip records and returns a slice of the LabelledGPScoord of the pickup locations
