@@ -27,9 +27,8 @@ type LabelledGPScoord struct {
 	Label int // cluster ID
 }
 type Partition struct {
-	grid []*LabelledGPScoord
-	x    int
-	y    int
+	grid   []LabelledGPScoord
+	offset int
 }
 
 const N int = 4
@@ -56,7 +55,7 @@ func main() {
 	incx := (maxPt.long - minPt.long) / float64(N)
 	incy := (maxPt.lat - minPt.lat) / float64(N)
 
-	var grid [N][N][]*LabelledGPScoord // a grid of GPScoord slices
+	var grid [N][N][]LabelledGPScoord // a grid of GPScoord slices
 
 	// Create the partition
 	// triple loop! not very efficient, but easier to understand
@@ -69,7 +68,7 @@ func main() {
 				// is it inside the expanded grid cell
 				if (pt.long >= minPt.long+float64(i)*incx-eps) && (pt.long < minPt.long+float64(i+1)*incx+eps) && (pt.lat >= minPt.lat+float64(j)*incy-eps) && (pt.lat < minPt.lat+float64(j+1)*incy+eps) {
 
-					grid[i][j] = append(grid[i][j], &pt) // add the point to this slide
+					grid[i][j] = append(grid[i][j], pt) // add the point to this slide
 					partitionSize++
 				}
 			}
@@ -88,8 +87,8 @@ func main() {
 
 	for j := 0; j < N; j++ {
 		for i := 0; i < N; i++ {
-			newPartition := Partition{grid[i][j], i, j}
-			jobs <- newPartition
+			offset := (i)*10000000 + (j)*1000000
+			jobs <- Partition{grid[i][j], offset}
 
 		}
 	}
@@ -113,7 +112,7 @@ func consumer(jobs chan Partition, done *sync.WaitGroup) {
 
 		if more {
 			//calling DBScan function
-			DBscan(j.grid, MinPts, eps, (j.x)*10000000+(j.y)*1000000)
+			DBscan(j.grid, MinPts, eps, j.offset)
 
 		} else {
 			done.Done()
@@ -127,67 +126,69 @@ func consumer(jobs chan Partition, done *sync.WaitGroup) {
 // MinPts, eps: parameters for the DBSCAN algorithm
 // offset: label of first cluster (also used to identify the cluster)
 // returns number of clusters found
-func DBscan(coords []*LabelledGPScoord, MinPts int, eps float64, offset int) (nclusters int) {
+func DBscan(coords []LabelledGPScoord, MinPts int, eps float64, offset int) (nclusters int) {
 	nclusters = 0
 	unvisited := 0
 	noise := -1
 
 	for i := 0; i < len(coords); i++ {
 		p := &coords[i]
-		if (*p).Label != unvisited { //not an undefined point
+		if p.Label != unvisited { //not an undefined point
 			continue
 		}
-		neighbors := RangeQuery(coords, **p) //find neighbors
+		neighbors := RangeQuery(coords, *p) //find neighbors
 		if len(neighbors) < MinPts {
-			(**p).Label = noise //noise
+			p.Label = noise //noise
 			continue
 		}
 		nclusters = nclusters + 1
-		(**p).Label = nclusters + offset
+		p.Label = nclusters + offset
 		seedset := neighbors
 		for j := 0; j < len(seedset); j++ {
-
-			if seedset[j].ID == (**p).ID {
+			if seedset[j].ID == p.ID {
 				continue
 			}
 			if seedset[j].Label == noise {
-				seedset[j].Label = (**p).Label
+				seedset[j].Label = p.Label
 			}
 
-			if seedset[j].Label == unvisited {
+			if seedset[j].Label != unvisited {
 				continue
 			}
-			seedset[j].Label = (**p).Label
+			seedset[j].Label = p.Label
 			seedNeighbors := RangeQuery(coords, *seedset[j])
 			if len(seedNeighbors) >= MinPts {
-				for k := 0; k < len(seedNeighbors); k++ {
-					seedset = append(seedset, (seedNeighbors[k]))
-				}
+				seedset = append(seedset, seedNeighbors...)
+				/*for i := 0; i < len(seedNeighbors); i++ {
+					point := seedNeighbors[i]
+					seedset = append(seedset, point)
+				}*/
+
 			}
+
 		}
 
 	}
 	// End of DBscan function
 	// Printing the result (do not remove)
 	fmt.Printf("Partition %10d : [%4d,%6d]\n", offset, nclusters, len(coords))
-
 	return nclusters //return number of cluster we have
 }
 
-func RangeQuery(db []*LabelledGPScoord, p LabelledGPScoord) (n []*LabelledGPScoord) {
+func RangeQuery(db []LabelledGPScoord, p LabelledGPScoord) (n []*LabelledGPScoord) {
 	for i := 0; i < len(db); i++ {
-
-		if distance(db[i].GPScoord, p.GPScoord) <= eps {
-			n = append(n, db[i])
+		p2 := &db[i]
+		if *p2 != p && distance(p2.GPScoord, p.GPScoord) <= eps {
+			n = append(n, p2)
 		}
 	}
 	return n
 }
 
 func distance(point1 GPScoord, point2 GPScoord) (distance float64) {
-	x := math.Pow(point2.lat-point1.lat, 2)
-	y := math.Pow(point2.long-point1.long, 2)
-	distance = math.Sqrt(x + y)
+	x := point2.lat - point1.lat
+	y := point2.long - point1.long
+	distance = math.Sqrt(x*x + y*y)
 	return distance
 }
 

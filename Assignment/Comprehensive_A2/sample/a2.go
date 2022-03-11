@@ -38,7 +38,7 @@ type Partition struct {
 	y    int
 }
 
-const N int = 4
+const N int = 10
 const MinPts int = 5
 const eps float64 = 0.0003
 const filename string = "yellow_tripdata_2009-01-15_9h_21h_clean.csv"
