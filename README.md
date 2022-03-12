@@ -67,6 +67,9 @@
 - looping with repeat 
 - character i/o 
 
+6. [**Cut operation**] 
+7. [**List**] 
+
 
 
 
