@@ -55,12 +55,17 @@
 3. **Backtracking** 
 - [Search Tree](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/SearchTree_BackTracking.md)
 
-4. **Arithmetic Expressions**
+4. [**Arithmetic Expressions**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/Prolog_arithmetic.md) 
 - Built-in operators 
 - Unification with numbers 
 - Recursive calculations
 - Generator 
 
+5. [**Input and output** ](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/InputOutput.md#prolog-input--output)
+- reading and writing to console
+- reading and write to file 
+- looping with repeat 
+- character i/o 
 
 
 
