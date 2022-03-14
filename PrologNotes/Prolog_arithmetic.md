@@ -50,11 +50,51 @@ Example
 
 
 **Unification with numbers**
+- unification of 1+2 and 3 fails, because 1+2 is term, 3 is number 
 
 **Recursive calculations**
+1. Min predicate 
+```
+min(X,Y,X) :- X < Y 
+min(X,Y,Y) :- X >= Y 
+```
 
-**Generator**
+2. Power 
+```
+pow(X,1,X).
+pow(X,Y,Z) :- Y > 1, 
+	Y1 is Y -1, 
+	pow(X,Y1,Z1),
+	Z is X* Z1 
+```
 
+3. gcd 
+```
+gcd(U,0,U). 
+gcd(U,V,W) :- V>0, R is U mod V, gcd(V,R,W). 
+```
+
+4. fibonacci 
+```
+fib(N,F):- N>1 
+	N1 is N -1, 
+	N2 is N -2, 
+	fib(N1,N2),
+	fib(N2,F2), 
+	F is F1 + F2. 
+```
+
+5. Check even or odd 
+```
+even(0). 
+odd(N) :- N > 0, 
+	M is N - 1, 
+	even(M). 
+
+even(N) :- N > 0, 
+	M is N - 1, 
+	odd(M). 
+```
 
 
 
