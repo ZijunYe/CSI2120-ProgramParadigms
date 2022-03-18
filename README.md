@@ -70,8 +70,8 @@
 - looping with repeat 
 - character i/o 
 
-6. [**Cut operation**] 
-7. [**List**] 
+6. [**Cut operation**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/cutOperation.md) 
+7. [**List**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/list.md)  
 
 
 
