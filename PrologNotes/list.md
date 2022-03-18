@@ -96,6 +96,30 @@ partitionList(P,[X|L],PG,[X|PD]) :- X @>= P,
 partitionList(P,[],[],[]). 
 ```
 
+
+9. invert the order of list 
+*Using Append* 
+```
+mirror([],[]).% empty list is mirrored itself 
+mirror([x|L1],L2):= 
+    mirror(L1,L3), 
+    append(L3,[X],L2). %L3 is the list, X is the append value, L2 is the resulting list 
+```
+*Using accumulator- helper function/ wrapper pattern function design*
+```
+reverseList([],L,L) :-!. 
+reverseList([H|T],L,R) :- 
+    reverseList(T,[H|L],R). 
+mirrorAcc(L,R) :- reverseList(L,[],R). 
+```
+- it works either directly calling reverseList or call mirrorAcc, just input argument different 
+
+
+10. Operators on the list 
+*Example1 - apply an operator to each element of a list* 
+*Example2 - sum up elements of a list of numbers*
+
+
 **list representation** 
 1. dot operator 
 - The list {pie,fruit,cream} is written (pie.(fruit.(cream.nil)))
@@ -105,3 +129,9 @@ partitionList(P,[],[],[]).
 
 
 
+**Other build-in operation**
+
+```findall```
+```bagof```: keep duplicates and not sorted 
+- takes three input 
+```setof```: remove all duplicates, sorted result 
