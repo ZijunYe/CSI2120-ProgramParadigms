@@ -5,6 +5,9 @@
 | lab2        | receiver, channel, cutomize array size     |
 | lab3        | check channel status,error message,buffer channel|
 | lab4        | prolog introduction, how to consulting file|
+| lab5        | prolog recursion|
+| lab6        | prolog repeat method,read and write to console,cut operator,list intro|
+| lab7        | prolog work with List, how to append value to list, maxmin,reverseList, addalternative,check oddeven|
 
 | tut#        | Description |
 | ----------- | ------------------------------------------ |
