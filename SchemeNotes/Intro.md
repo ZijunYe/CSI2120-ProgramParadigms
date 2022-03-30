@@ -27,6 +27,10 @@
 
 ## Basic Concepts 
 - list is the fundamental data structure 
+```
+'(1 2 3) --> return list 
+(list 1 2 3) --> return list '(1 2 3)
+```
 - atom: a number, a character string or a symbol(all data types are equal)
 - expression: an atom or a list 
     - list: a series of expressions in parentheses ```(+(sqrt 3)6)```
