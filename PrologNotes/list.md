@@ -135,3 +135,5 @@ mirrorAcc(L,R) :- reverseList(L,[],R).
 ```bagof```: keep duplicates and not sorted 
 - takes three input 
 ```setof```: remove all duplicates, sorted result 
+```findall(returnType, targetPredicates, Variable)```
+```bagof(returnItem, targetPredicates,Variable)```
