@@ -11,6 +11,7 @@ g(f(2),g(3,1)) becomes (g (f 2) (g 3 1))
 ```
 (quotient 75 7)
 (remainder 75 7)
+(fliter even? '(1 2 3 4)) => '(2 4) 
 ```
 
 ## Defining functions in Racket 

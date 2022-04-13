@@ -73,6 +73,82 @@
 6. [**Cut operation**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/cutOperation.md) 
 7. [**List**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/list.md)  
 
+## Scheme (racket)
+1. [**Basic**]()
+    - built-in functions 
+    - How to define functions 
+    - comparison 
+    - predicates 
+    - special syntactic form 
+      1. if statement 
+      2. conditional expression 
+
+2. [**equivlency**]()
+      - eq?
+      - eqv? 
+      - equal? 
+    - control structures 
+
+3. [**Lists**]()
+   - How to define list 
+   - How to construct list 
+   - list operations 
+
+4. [**Recursion**]()
+
+5. [**Let**]()
+    - definition 
+    - let vs let* vs letrec
+    - named let-bound 
+
+6. [**Character,String,File**]()
+    - Characrer 
+    - String 
+    - Input & Output 
+
+7. [**Other**]() 
+   - Iteration 
+   - vector 
+   - set! 
+   - Sort 
+   - Tree 
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
