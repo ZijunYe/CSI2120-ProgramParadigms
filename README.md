@@ -74,39 +74,39 @@
 7. [**List**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/PrologNotes/list.md)  
 
 ## Scheme (racket)
-1. [**Basic**]()
-    - built-in functions 
-    - How to define functions 
-    - comparison 
-    - predicates 
-    - special syntactic form 
-      1. if statement 
-      2. conditional expression 
+1. [**Basic**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/SchemeNotes/Basic.md#function-applications-in-racket)
+- built-in functions 
+- How to define functions 
+- comparison 
+- predicates 
+- special syntactic form 
+  - if statement
+  -  conditional expression 
 
-2. [**equivlency**]()
-      - eq?
-      - eqv? 
-      - equal? 
-    - control structures 
+2. [**equivlency**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/SchemeNotes/equivlencyPredicates.md)
+  - eq?
+  - eqv? 
+  - equal? 
+  - control structures 
 
-3. [**Lists**]()
+3. [**Lists**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/SchemeNotes/List.md)
    - How to define list 
    - How to construct list 
    - list operations 
 
-4. [**Recursion**]()
+4. [**Recursion**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/SchemeNotes/Recursion.md)
 
-5. [**Let**]()
+5. [**Let**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/SchemeNotes/Let.md)
     - definition 
     - let vs let* vs letrec
     - named let-bound 
 
-6. [**Character,String,File**]()
+6. [**Character,String,File**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/SchemeNotes/IO.md)
     - Characrer 
     - String 
     - Input & Output 
 
-7. [**Other**]() 
+7. [**Other**](https://github.com/ZijunYe/CSI2120-ProgramParadigms/blob/main/SchemeNotes/Other.md) 
    - Iteration 
    - vector 
    - set! 
