@@ -8,10 +8,11 @@
 | lab5        | prolog recursion|
 | lab6        | prolog repeat method,read and write to console,cut operator,list intro|
 | lab7        | prolog work with List, how to append value to list, maxmin,reverseList, addalternative,check oddeven|
+| lab8        | more complicate prolog |
+| lab9        | how to write scheme|
+| lab10       | scheme recursion and function definition|
 
-| tut#        | Description |
-| ----------- | ------------------------------------------ |
-| tut2        |  receiver, interface                       |
+
 
 ## Go
 1. **Go Basic(lecture1)**
